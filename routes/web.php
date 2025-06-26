@@ -29,6 +29,13 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/pancong', function () {
+    return Inertia::render('Pancong/Pancong');
+})->middleware(['auth', 'verified'])->name('pancong');
+Route::get('/minuman', function () {
+    return Inertia::render('Pancong/Minuman');
+})->middleware(['auth', 'verified'])->name('minuman');
+
 
 Route::get('/detail', [DetailController::class, 'index']);
 
