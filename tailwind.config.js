@@ -19,7 +19,7 @@ export default {
                 pink: '#FFB4B4',
                 ijo: '#00E573',
                 abu: '#99A1AF',
-                kuning: '#F3C623j'
+                kuning: '#F3C623'
             }
         },
     },

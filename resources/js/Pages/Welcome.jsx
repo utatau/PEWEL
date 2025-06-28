@@ -1,9 +1,8 @@
-import { Head } from '@inertiajs/react';
+import { Head, router } from '@inertiajs/react';
 import Detail from './Pancong/Detail'
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
-    const detaill = () => {
-        console.log(1)
-    }
+export default function Welcome(props) {
+    console.log(props.pancong)
+
     return (
         <>
             <Head title="Pancong Abidzar" />
@@ -19,17 +18,20 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 <div className='container mt-10 mx-auto'>
                     <h1 className='border-t-2 text-center mt-4 p-2 border-black font-bold'>Pancong</h1>
                 </div>
-                {/* menu pancong*/}
-                <div className='grid grid-cols-4 container'>
-                    <div className="col-span-2 m-4 bg-abu rounded hover:cursor-pointer" onClick={() => detaill()}>
-                        <div className="flex flex-col m-5 gap-2">
-                            <img src="assets/gambar/header.png" alt="" className='border-4 rounded-md border-white h-[15em]' />
-                            <h1 className='font-bold'>Nama menu</h1>
-                            <p className='font-bold'>Rp. 10000</p>
-                        </div>
-                    </div>
+                <div className='grid grid-cols-4 container' >
+                    {props.pancong ? props.pancong.map((data, i) => {
+                        return (
+                            <div className="col-span-2 m-4 bg-abu rounded hover:cursor-pointer" key={i} onClick={() => detaill()}>
+                                <div className="flex flex-col m-5 gap-2">
+                                    <img src={`assets/gambar/${data.gambar}`} alt="" className='border-4 rounded-lg border-white h-[15em]' />
+                                    <h1 className='font-bold'>{data.nama}</h1>
+                                    <p className='font-bold'>{data.harga}</p>
+                                </div>
+                            </div>
+                        )
+                    }) : ''}
                     <div className="col-span-4 m-4 ">
-                        <a className='flex justify-end text-kuning' href='#'>See All</a>
+                        <a className='flex justify-end text-kuning hover:cursor-pointer' onClick={() => router.get('/allpancong')}>See All</a>
                     </div>
                 </div>
                 <div className='container mt-10 mx-auto'>
@@ -47,20 +49,21 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         <a className='flex justify-end text-kuning' href='#'>See All</a>
                     </div>
                 </div>
-                <div className='relative bottom-4'>
-                    <div className="bg-pink gap-3">
-                        <div className="absulote flex flex-row">
-                            <img src="assets/icon/cart.png" alt="" className='border-2 p-3 bg-white rounded-md' />
-                            <h1 className='text-2xl self-center text-end'>Check OUT</h1>
-                            <h2>Rp. 7.0000</h2>
-                            <h3>Total</h3>
+                <div className='bottom-4'>
+                    <div className="bg-[#FF686B] gap-3 flex flex-row justify-between rounded-md">
+                        <div className="absulote flex">
+                            <img src="assets/icon/cart.png" alt="" className='border-2 p-3 bg-white rounded-lg' />
+                            <div className="flex flex-col self-center m-2">
+                                <h3 className='text-[18px] font-bold'>Total</h3>
+                                <h2 className='text-[16px] font-bold'>Rp. 7.0000</h2>
+                            </div>
                         </div>
-                        <div className="">
-
+                        <div className="flex flex-row">
+                            <h1 className='text-2xl self-center text-end'>Check OUT</h1>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     );
 }

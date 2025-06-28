@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use App\Models\Minuman;
+use App\Models\Pancong;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class Menupancong extends Controller
 {
@@ -11,7 +15,28 @@ class Menupancong extends Controller
      */
     public function index()
     {
-        //
+        $pancong = Pancong::all();
+        $minuman = Minuman::all();
+
+        return inertia::render('Welcome', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'pancong' => $pancong,
+            'minuman' => $minuman
+        ]);
+    }
+
+    public function pancong(){
+        $pancong = Pancong::all();
+        return inertia::render('AllPancong', [
+            'pancong' => $pancong
+        ]);
+    }
+    public function minuman(){
+        $minuman = Minuman::all();
+        return inertia::render('AllMinuman', [
+            'minuman' => $minuman
+        ]);
     }
 
     /**
