@@ -41,7 +41,7 @@ export default function Welcome(props) {
                         <a className='flex justify-end text-kuning' href='#'>See All</a>
                     </div>
                 </div>
-                <div className='hidden bottom-4 bg-[#FF686B] rounded-2xl mt-10 shadow-gray-500 shadow-md max-w-screen-sm container'>
+                <div className='fixed bottom-4 bg-[#FF686B] rounded-2xl mt-10 shadow-gray-500 shadow-md max-w-screen-sm container'>
                     <div className="gap-3 flex flex-row justify-between ">
                         <div className="absulote flex">
                             <img src="assets/icon/cart.png" alt="" className='border-2 p-3 bg-white rounded-lg' />

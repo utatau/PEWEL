@@ -25,12 +25,12 @@ export default function Detail() {
                         <h1 className="text-2xl font-bold self-center">Total Order</h1>
                         <div className="flex flex-row gap-4 m-4">
                             <Button variant="outline">+</Button>
-                            <p className="font-bold self-center">Ini Angka</p>
+                            <p className="font-bold self-center">0</p>
                             <Button variant="outline">-</Button>
                         </div>
                     </div>
                     <div className="container bg-pink p-3 rounded-full mx-auto">
-                        <h1 className="text-center font-bold text-2xl">Add Orders - 0.0000</h1>
+                        <h1 className="text-center font-bold text-2xl text-white">Add Orders - 0.0000</h1>
                     </div>
                 </div>
             </div>

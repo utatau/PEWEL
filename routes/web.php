@@ -1,11 +1,12 @@
 <?php
 
 use Inertia\Inertia;
+use App\Http\Controllers\Menupancong;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Menupancong;
 
 
 /*
@@ -41,6 +42,8 @@ Route::get('/minuman', function () {
 
 Route::get('/detail', [DetailController::class, 'index']);
 Route::get('/allpancong', [MenuPancong::class, 'pancong']);
+Route::get('/cart', [CartController::class, 'index']);
+Route::get('/payment', [PaymentController::class, 'index']);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

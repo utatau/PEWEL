@@ -8,7 +8,7 @@ import {
     CardTitle,
 } from "@/Components/ui/card"
 
-export default function Cart() {
+export default function Payment() {
     return (
         <div className='max-w-screen-sm mx-auto overflow-y-hidden min-h-screen'>
             <img src="assets/icon/Group.png" alt="kembali" className='m-3 hover:cursor-pointer' onClick={() => router.get('/')} />
