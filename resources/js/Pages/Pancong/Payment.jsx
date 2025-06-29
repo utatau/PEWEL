@@ -7,8 +7,15 @@ import {
     CardHeader,
     CardTitle,
 } from "@/Components/ui/card"
+import { useSelector } from "react-redux"
+
 
 export default function Payment() {
+    const keranjang = useSelector(state => state.keranjang?.items ?? [])
+    const subtotal = keranjang.reduce((total, item) => total + item.harga * item.jumlah, 0)
+    const fee = 3000
+    const total = subtotal + fee
+
     return (
         <div className='max-w-screen-sm mx-auto overflow-y-hidden min-h-screen'>
             <img src="assets/icon/Group.png" alt="kembali" className='m-3 hover:cursor-pointer' onClick={() => router.get('/')} />

@@ -7,11 +7,15 @@ import {
     CardHeader,
     CardTitle,
 } from "@/Components/ui/card"
+import { router } from "@inertiajs/react"
 
 export default function Cart() {
+    const handleCheckout = () => {
+        router.get('/payment')
+    }
     return (
         <div className='max-w-screen-sm mx-auto overflow-y-hidden min-h-screen'>
-            <img src="assets/icon/Group.png" alt="kembali" className='m-3 hover:cursor-pointer' onClick={() => router.get('/')} />
+            <img src="assets/icon/Group.png" alt="kembali" className='m-3 hover:cursor-pointer' onClick={() => handleCheckout()} />
             <div className="container flex flex-col gap-3 mt-5">
                 <h1 className="text-center font-bold text-2xl">My Cart</h1>
                 <div className="flex flex-row justify-around bg-pink rounded-2xl shadow-lg py-1 mt-6">

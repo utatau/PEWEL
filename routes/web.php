@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 
 
@@ -40,6 +41,7 @@ Route::get('/minuman', function () {
 })->middleware(['auth', 'verified'])->name('minuman');
 
 
+Route::get('/detail/{id}', [DetailController::class, 'show']);
 Route::get('/detail', [DetailController::class, 'index']);
 Route::get('/allpancong', [MenuPancong::class, 'pancong']);
 Route::get('/cart', [CartController::class, 'index']);

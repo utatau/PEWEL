@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Pancong;
 use Illuminate\Http\Request;
 
 class DetailController extends Controller
@@ -36,7 +37,10 @@ class DetailController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $produk = Pancong::findOrFail($id);
+        return inertia::render('Pancong/Detail', [
+            'produk' =>$produk
+        ]);
     }
 
     /**
