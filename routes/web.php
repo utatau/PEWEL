@@ -45,7 +45,10 @@ Route::get('/detail/{id}', [DetailController::class, 'show']);
 Route::get('/detail', [DetailController::class, 'index']);
 Route::get('/allpancong', [MenuPancong::class, 'pancong']);
 Route::get('/cart', [CartController::class, 'index']);
-Route::get('/payment', [PaymentController::class, 'index']);
+Route::get('/keranjang', [DetailController::class, 'keranjang']);
+Route::get('/pembayaran', [PaymentController::class, 'index']);
+Route::get('/qris', [PaymentController::class, 'qris']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -38,9 +38,13 @@ class DetailController extends Controller
     public function show(string $id)
     {
         $produk = Pancong::findOrFail($id);
-        return inertia::render('Pancong/Detail', [
+        return inertia::render('Components/Detail', [
             'produk' =>$produk
         ]);
+    }
+    public function keranjang()
+    {
+        return inertia::render('Components/Keranjang');
     }
 
     /**

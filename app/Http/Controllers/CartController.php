@@ -11,7 +11,7 @@ class CartController extends Controller
      */
     public function index()
     {
-       return inertia::render('Pancong/Cart');
+       return inertia::render('Components/Cart');
     }
 
     /**

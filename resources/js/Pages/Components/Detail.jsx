@@ -10,13 +10,14 @@ export default function Detail() {
     const dispatch = useDispatch()
     const { produk } = usePage().props
     const [jumlah, setJumlah] = useState(1);
+    const [notes, setNotes] = useState("")
     const onAddOrder = () => {
         if (jumlah < 1) return
         dispatch(tambahKeKeranjang({
             nama: produk.nama,
             harga: produk.harga,
             jumlah: jumlah,
-            // notes: notes,
+            notes: notes,
             gambar: "pancong.jpg",
         }))
 
@@ -41,16 +42,16 @@ export default function Detail() {
                     <div className="flex flex-col gap-3">
                         <h1 className="text-2xl font-bold">Notes</h1>
                         <p>Optional</p>
-                        <Textarea placeholder="lol" className="h-40" />
+                        <Textarea placeholder="lol" className="h-40" onChange={(e) => setNotes(e.target.value)} />
                     </div>
                 </div>
                 <div className="container absolute bottom-0 border-2  shadow-lg max-w-screen-sm rounded-2xl p-5">
                     <div className="flex justify-between">
                         <h1 className="text-2xl font-bold self-center">Total Order</h1>
                         <div className="flex flex-row gap-4 m-4">
-                            <Button variant="outline" onClick={() => setJumlah(jumlah + 1)}>+</Button>
-                            <p className="font-bold self-center">{jumlah}</p>
                             <Button variant="outline" onClick={() => handleMinus()}>-</Button>
+                            <p className="font-bold self-center">{jumlah}</p>
+                            <Button variant="outline" onClick={() => setJumlah(jumlah + 1)}>+</Button>
                         </div>
                     </div>
                     <div

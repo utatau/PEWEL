@@ -12,7 +12,11 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return inertia::render('Pancong/Payment');
+        return inertia::render('Components/Pembayaran');
+    }
+
+    public function qris(){
+        return inertia::render('Components/Qris');
     }
 
     /**

@@ -1,5 +1,4 @@
 import { Head, router } from '@inertiajs/react';
-import Detail from './Pancong/Detail'
 import Header from './Components/Header';
 import CartBar from './Components/Cart';
 export default function Welcome(props) {
@@ -18,7 +17,7 @@ export default function Welcome(props) {
                                 <div className="flex flex-col m-5 gap-2">
                                     <img src={`assets/gambar/${data.gambar}`} alt="" className='border-4 rounded-lg border-white h-[15em]' />
                                     <h1 className='font-bold'>{data.nama}</h1>
-                                    <p className='font-bold'>{data.harga.toLocaleString('id-ID')}</p>
+                                    <p className='font-bold'>Rp. {data.harga.toLocaleString('id-ID')}</p>
                                 </div>
                             </div>
                         )
@@ -37,7 +36,7 @@ export default function Welcome(props) {
                                 <div className="flex flex-col m-5 gap-2">
                                     <img src={`assets/gambar/${data.gambar}`} alt="" className='border-4 rounded-lg border-white h-[15em]' />
                                     <h1 className='font-bold'>{data.nama}</h1>
-                                    <p className='font-bold'>{data.harga.toLocaleString('id-ID')}</p>
+                                    <p className='font-bold'>Rp. {data.harga.toLocaleString('id-ID')}</p>
                                 </div>
                             </div>
                         )
