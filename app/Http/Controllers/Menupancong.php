@@ -28,13 +28,13 @@ class Menupancong extends Controller
 
     public function pancong(){
         $pancong = Pancong::all();
-        return inertia::render('AllPancong', [
+        return inertia::render('Components/Menu/AllPancong', [
             'pancong' => $pancong
         ]);
     }
     public function minuman(){
         $minuman = Minuman::all();
-        return inertia::render('AllMinuman', [
+        return inertia::render('Components/Menu/AllMinuman', [
             'minuman' => $minuman
         ]);
     }

@@ -23,7 +23,7 @@ export default function Welcome(props) {
                         )
                     }) : ''}
                     <div className="col-span-4 m-4 ">
-                        <a className='flex justify-end text-kuning hover:cursor-pointer' onClick={() => router.get('/allpancong')}>See All</a>
+                        <a className='flex justify-end text-kuning hover:cursor-pointer' onClick={() => router.get('/Components/Menu/allpancong')}>See All</a>
                     </div>
                 </div>
                 <div className='container mt-10 mx-auto'>

@@ -24,11 +24,11 @@ export default function Keranjang() {
                     <p className="font-bold">Order Type</p>
                     <p className="font-bold">Dine in</p>
                 </div>
-                <div className="mt-20">
+                <div className="mt-15">
                     {keranjang.map((item, i) => (
-                        <Card key={i}>
-                            <CardHeader className="flex flex-row">
-                                <img src="assets/gambar/pancong-1.jpg" alt="menu" className="w-40 h-40" />
+                        <Card key={i} className="mb-5">
+                            <CardHeader className="flex flex-row shadow-lg">
+                                <img src="assets/gambar/pancong-1.jpg" alt="menu" className="w-40 h-40 rounded-3xl" />
                                 <div className="flex flex-col justify-center gap-2 ml-4">
                                     <CardTitle className="text-2xl font-bold">{item.nama}</CardTitle>
                                     <CardDescription className="font-bold">Harga Rp. {item.harga.toLocaleString('id')}</CardDescription>
@@ -59,7 +59,7 @@ export default function Keranjang() {
                     </Card>
                 </div>
             </div>
-            <div className="fixed bottom-4 max-w-screen-sm container w-11/12 ml-4 flex flex-row justify-between border rounded-md">
+            <div className="fixed bottom-4 max-w-screen-sm container w-11/12 ml-4 flex flex-row justify-between border rounded-md bg-white">
                 <div className="m-2">
                     <h1 className="font-bold">Total Payments</h1>
                     <h1 className="font-bold">Rp. {total.toLocaleString('id')}</h1>
