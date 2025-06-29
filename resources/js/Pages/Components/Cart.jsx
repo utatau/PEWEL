@@ -1,14 +1,18 @@
+import { router } from '@inertiajs/react'
 import { useSelector } from 'react-redux'
-
 export default function Cart() {
     const keranjang = useSelector(state => state.keranjang.items)
     const totalHarga = keranjang.reduce((total, item) => total + item.harga * item.jumlah, 0)
     const totalItem = keranjang.reduce((total, item) => total + item.jumlah, 0)
 
     if (keranjang.length < 1) return null
+    console.log(keranjang)
+    const handleCo = () => {
+        router.get('/payment')
+    }
 
     return (
-        <div className='fixed bottom-4 w-full max-w-screen-sm hover:cursor-pointer' onClick={() => { }}>
+        <div className='fixed bottom-4 w-full max-w-screen-sm hover:cursor-pointer' onClick={() => { handleCo() }}>
             <div className='bg-[#FF686B] rounded-2xl shadow-gray-500 shadow-md max-w-screen-sm container mx-auto p-4'>
                 <div className="gap-3 flex flex-row justify-between items-center">
                     <div className="flex">

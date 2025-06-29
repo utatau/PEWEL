@@ -11,13 +11,10 @@ export default function Detail() {
     const { produk } = usePage().props
     const [jumlah, setJumlah] = useState(1);
     const onAddOrder = () => {
-        console.log("Klik Add Orders!")
-
         if (jumlah < 1) return
-
         dispatch(tambahKeKeranjang({
-            nama: "PANCONG BIDZAR",
-            harga: 6000,
+            nama: produk.nama,
+            harga: produk.harga,
             jumlah: jumlah,
             // notes: notes,
             gambar: "pancong.jpg",

@@ -47,7 +47,7 @@ export default function Cart() {
                                 <div className="fixed self-end text">
                                     <h1 className="font-bold shadow-2xl">Rp. 3000</h1>
                                     <h1 className="font-bold shadow-2xl">Rp. 3000</h1>
-                                    <h1 className="font-bold shadow-md text-pink">Rp. 3000</h1>
+                                    <h1 className="font-bold shadow-md text-pink"></h1>
                                 </div>
                             </div>
                         </CardHeader>
@@ -61,7 +61,7 @@ export default function Cart() {
                 </div>
                 <div className="self-center m-2">
                     <Button className="bg-pink">
-                        Continue to payments
+                        Continue to payment
                     </Button>
                 </div>
             </div>
