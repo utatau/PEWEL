@@ -29,7 +29,7 @@ export default function AllPancong(props) {
                         )
                     }) : ''}
                 </div>
-                <div className='relative bottom-2'>
+                <div className='absolute bottom-10'>
                     <div className="bg-[#FF686B] gap-5 rounded-full">
                         <div className="flex flex-row justify-between">
                             <img src="assets/icon/cart.png" alt="" className='border-2 p-3 bg-white rounded-lg' />
