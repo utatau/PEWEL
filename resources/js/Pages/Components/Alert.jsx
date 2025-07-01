@@ -1,3 +1,4 @@
+"use client"
 import {
     AlertDialog,
     AlertDialogAction,
@@ -9,11 +10,10 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { toast } from "sonner"
 
 export default function Alert() {
-    const Lunas = () => {
-
-    }
+    const date = new Date().getDate()
     return (
         <AlertDialog>
             <AlertDialogTrigger className="bg-[#FA52A8] p-2 rounded-xl font-bold text-white">Lanjutkan Pembayaran</AlertDialogTrigger>
@@ -26,7 +26,10 @@ export default function Alert() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Check ulang</AlertDialogCancel>
-                    <AlertDialogAction className="bg-[#FA52A8]" onClick={() => Lunas()}>Bayar sekarang</AlertDialogAction>
+                    <AlertDialogAction className="bg-[#FA52A8]" variant="outline"
+                        onClick={() =>
+                            toast("Pembayaran anda sedang di proses centang biru")
+                        }>Bayar sekarang</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

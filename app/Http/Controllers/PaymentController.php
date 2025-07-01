@@ -15,6 +15,7 @@ class PaymentController extends Controller
         return inertia::render('Components/Pembayaran');
     }
 
+
     public function qris(){
         return inertia::render('Components/Qris');
     }

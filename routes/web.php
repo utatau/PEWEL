@@ -29,7 +29,6 @@ use App\Http\Controllers\ProfileController;
 //         'phpVersion' => PHP_VERSION,
 //     ]);
 // });
-Route::get('/', [MenuPancong::class, 'index']);
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -40,7 +39,7 @@ Route::get('/minuman', function () {
     return Inertia::render('Pancong/Minuman');
 })->middleware(['auth', 'verified'])->name('minuman');
 
-
+Route::get('/', [MenuPancong::class, 'index']);
 Route::get('/detail/{id}', [DetailController::class, 'show']);
 Route::get('/detail', [DetailController::class, 'index']);
 Route::get('/allpancong', [MenuPancong::class, 'pancong']);
@@ -54,5 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';
