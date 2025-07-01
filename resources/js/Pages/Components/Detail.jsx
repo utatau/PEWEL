@@ -9,7 +9,7 @@ import { tambahKeKeranjang } from '@/Pages/Action/keranjangSlice'
 export default function Detail() {
     const dispatch = useDispatch()
     const { produk } = usePage().props
-    const [jumlah, setJumlah] = useState(1);
+    const [jumlah, setJumlah] = useState(0);
     const [notes, setNotes] = useState("")
     const onAddOrder = () => {
         if (jumlah < 1) return

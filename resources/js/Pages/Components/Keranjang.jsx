@@ -14,7 +14,7 @@ export default function Keranjang() {
     const keranjang = useSelector(state => state.keranjang?.items ?? [])
     const subtotal = keranjang.reduce((total, item) => total + item.harga * item.jumlah, 0)
     const fee = 3000
-    const total = subtotal + fee
+    const total = subtotal
     return (
         <div className='max-w-screen-sm mx-auto overflow-y-hidden min-h-screen'>
             <img src="assets/icon/Group.png" alt="kembali" className='m-3 hover:cursor-pointer' onClick={() => router.get('/')} />
@@ -39,7 +39,9 @@ export default function Keranjang() {
                         </Card>
                     ))}
                 </div>
-                <div className="mt-20">
+                {!total ? (
+                    <h1>tidak ada pesanan bro</h1>
+                ) : <div className="mt-20">
                     <Card className="shadow-md">
                         <CardHeader className="flex flex-col">
                             <div className="flex flex-col justify-center gap-2 mb-2 ">
@@ -52,23 +54,29 @@ export default function Keranjang() {
                                 <div className="fixed self-end text">
                                     <h1 className="font-bold shadow-2xl">Rp. 3000</h1>
                                     <h1 className="font-bold shadow-2xl">Rp. 3000</h1>
-                                    <h1 className="font-bold shadow-md text-pink">Rp. {total.toLocaleString('id')}</h1>
+                                    <h1 className="font-bold shadow-md text-pink">Rp.{total ? total.toLocaleString('id') : <p>belum ada pesanan</p>}
+                                    </h1>
                                 </div>
                             </div>
                         </CardHeader>
                     </Card>
                 </div>
+
+                }
+
             </div>
-            <div className="fixed bottom-4 max-w-screen-sm container w-11/12 ml-4 flex flex-row justify-between border rounded-md bg-white">
-                <div className="m-2">
-                    <h1 className="font-bold">Total Payments</h1>
-                    <h1 className="font-bold">Rp. {total.toLocaleString('id')}</h1>
+            {total && (
+                <div className="fixed bottom-4 max-w-screen-sm container w-11/12 ml-4 flex flex-row justify-between border rounded-md bg-white">
+                    <div className="m-2">
+                        <h1 className="font-bold">Total Payments</h1>
+                        <h1 className="font-bold">Rp. {total.toLocaleString('id')}</h1>
+                    </div>
+                    <div className="self-center m-2">
+                        <Pembayaran />
+                    </div>
                 </div>
-                <div className="self-center m-2">
-                    <Pembayaran />
-                </div>
-            </div>
-        </div>
+            )}
+        </div >
     )
 }
 

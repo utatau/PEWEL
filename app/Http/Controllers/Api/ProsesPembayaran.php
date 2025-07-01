@@ -50,8 +50,8 @@ class ProsesPembayaran extends Controller
             foreach ($actions as $action) {
                 $actionMap[$action['name']] = $action['url'];
             }
-            return response()->json(['qr' => $actionMap['generate-qr-code']]);
-            return \inertia::render('/qris/{id}');
+            return response()->json(['qr' => $actionMap['generate-qr-code'], 'status' => $actionMap['get-status']]);
+            
         }
         return response()->json(['message' => $resp->body()], 500);
     }
