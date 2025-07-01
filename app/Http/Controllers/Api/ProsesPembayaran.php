@@ -43,6 +43,7 @@ class ProsesPembayaran extends Controller
         ]);
         if($resp->status() == 201 || $resp->status() == 200){
             $actions = $resp->json('actions');
+            $orderId = $resp->json('order_id');
             if(empty($actions)){
                 return response()->json(['message' => $resp['status_message']], 500);
             }
@@ -50,7 +51,7 @@ class ProsesPembayaran extends Controller
             foreach ($actions as $action) {
                 $actionMap[$action['name']] = $action['url'];
             }
-            return response()->json(['qr' => $actionMap['generate-qr-code'], 'status' => $actionMap['get-status']]);
+            return response()->json(['qr' => $actionMap['generate-qr-code'], 'status' => $actionMap['get-status'], 'order_id' => $orderId]);
             
         }
         return response()->json(['message' => $resp->body()], 500);

@@ -24,7 +24,7 @@ class CekPembayaran extends Controller
         if($signature != $request->signature_key){
             return response()->json(['message' => 'invalid signature'], 400);
         }
-            $transaction = Penjualan::find($request->id);
+            $transaction = Penjualan::find($request->order_id);
             if($transaction){
                 $statusCode = 'PENDING';
                 if($request->transaction_status == "settlement"){
