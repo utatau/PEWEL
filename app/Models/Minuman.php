@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Minuman extends Model
 {
     use HasFactory;
+    protected $table = 'minumans';
     protected $guarded = [];
     public function Penjualan(){
         return $this->hashMany(Penjualan::class);

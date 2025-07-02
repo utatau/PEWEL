@@ -3,7 +3,6 @@ import Header from './Components/Header';
 import CartBar from './Components/Cart';
 
 export default function Welcome(props) {
-    console.log(props)
     return (
         <>
             <Head title="Pancong Abidzar" />
@@ -32,7 +31,7 @@ export default function Welcome(props) {
                     </div>
                     <div className="flex justify-end mt-4">
                         <a
-                            onClick={() => router.get('/Components/Menu/allpancong')}
+                            onClick={() => router.get('/allpancong')}
                             className="text-[#FA52A8] text-sm font-semibold hover:underline cursor-pointer"
                         >
                             Lihat Semua Pancong →
@@ -43,7 +42,7 @@ export default function Welcome(props) {
                 <section className='px-4 pt-8 pb-16'>
                     <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Minuman</h2>
                     <div className='grid grid-cols-2 gap-4'>
-                        {props.pancong?.map((data, i) => (
+                        {props.minum.data?.map((data, i) => (
                             <div
                                 key={i}
                                 onClick={() => router.get(`/detail/${data.id}`)}
@@ -63,7 +62,7 @@ export default function Welcome(props) {
                     </div>
                     <div className="flex justify-end mt-4">
                         <a
-                            onClick={() => router.get('/Components/Menu/allpancong')}
+                            onClick={() => router.get('/allminuman')}
                             className="text-[#FA52A8] text-sm font-semibold hover:underline cursor-pointer"
                         >
                             Lihat Semua Minuman →

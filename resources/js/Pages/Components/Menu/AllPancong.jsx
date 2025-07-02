@@ -5,6 +5,7 @@ export default function AllPancong(props) {
         <>
             <Head title="Pancong Abidzar" />
             <div className='max-w-screen-sm mx-auto bg-gray-50 min-h-screen'>
+                <Button className="absolute mt-5 ml-4" variant="outline" onClick={() => router.get('/')}>Kembali</Button>
                 <Header />
                 <section className='px-4 pt-6'>
                     <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Pancong</h2>

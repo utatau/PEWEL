@@ -26,12 +26,12 @@ import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { router } from "@inertiajs/react"
+import Menit from "./Menit"
 
 export default function Pembayaran() {
     const [dataStruk, setDataStruk] = useState(null);
     const [nama, setNama] = useState("")
     const [notif, isNotif] = useState(false);
-    const [statq, setStatq] = useState('');
     const [no, setNo] = useState("")
     const [meja, setMeja] = useState(4)
     const [jumlah, setJumlah] = useState(0)
@@ -65,7 +65,6 @@ export default function Pembayaran() {
             setDataStruk(parsed);
             localStorage.setItem('dataStruk', response.config.data);
             setQrUrl(response.data.qr);
-            setStatq(response.data.status)
             setOrder(response.data.order_id);
         } catch (err) {
             console.log(err)

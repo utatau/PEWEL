@@ -31,6 +31,7 @@ class Menupancong extends Controller
 
     public function pancong(){
         $pancong = Pancong::all();
+        $cong = Pancong::paginate(4);
         return inertia::render('Components/Menu/AllPancong', [
             'pancong' => $pancong,
             'cong' => $cong

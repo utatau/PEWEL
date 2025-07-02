@@ -1,13 +1,15 @@
 import { Head, router } from '@inertiajs/react';
 import Header from '../Header';
+import { Button } from '@/Components/ui/button';
 export default function Allminuman(props) {
     return (
         <>
             <Head title="Pancong Abidzar" />
             <div className='max-w-screen-sm mx-auto bg-gray-50 min-h-screen'>
+                <Button className="absolute mt-5 ml-4" variant="outline" onClick={() => router.get('/')}>Kembali</Button>
                 <Header />
                 <section className='px-4 pt-6'>
-                    <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Pancong</h2>
+                    <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Minuman</h2>
                     <div className='grid grid-cols-2 gap-4'>
                         {props.pancong?.map((data, i) => (
                             <div
