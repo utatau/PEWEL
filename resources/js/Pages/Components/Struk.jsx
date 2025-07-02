@@ -4,7 +4,6 @@ export default function Struk(props) {
     const subtotal = keranjang.reduce((total, item) => total + item.harga * item.jumlah, 0)
     const fee = 3000
     const total = subtotal
-    console.log(props)
     return (
         <div className='max-w-screen-sm mx-auto overflow-y-hidden min-h-screen'>
             <div class="max-w-sm mx-auto p-4 border border-black text-[10px] font-mono" >

@@ -33,10 +33,9 @@ import { router } from "@inertiajs/react"
 export default function Pembayaran() {
     const [nama, setNama] = useState("")
     const [notif, isNotif] = useState(false);
-    // const [qris, setQris] = useState("");
     const [statq, setStatq] = useState('');
     const [no, setNo] = useState("")
-    const [meja, setMeja] = useState(0)
+    const [meja, setMeja] = useState(4)
     const [jumlah, setJumlah] = useState(0)
     const [pesanan, setPesanan] = useState("")
     const [pembayaran, setPembayaran] = useState("")
@@ -57,7 +56,7 @@ export default function Pembayaran() {
     useEffect(() => {
         if (keranjang.length > 0) {
             const totalJumlah = keranjang.reduce((acc, item) => acc + item.jumlah, 0)
-            const pesananList = keranjang.map(item => item.nama).join(', ')
+            const pesananList = keranjang.map(item => item.menu).join(', ')
             setJumlah(totalJumlah)
             setPesanan(pesananList)
             setMeja(4)
@@ -66,12 +65,13 @@ export default function Pembayaran() {
 
     async function qrCode() {
         const data = {
-            jumlah_pesanan: jumlah, pesanan: pesanan, pembayaran: pembayaran, status: status, total: total
+            jumlah_pesanan: jumlah, pesanan: pesanan, pembayaran: pembayaran, status: status, total: total, nama: nama, no: no, meja: meja, menu: menu
         };
         try {
             const response = await axios.post('api/proses-pembayaran', data);
+            const resp = response;
+            console.log(resp.config.data)
             const qrUrl = response.data.qr;
-            const qris = response.data.status;
             setStatq(response.data.status)
             setOrder(response.data.order_id);
             document.getElementById('qr-img').src = qrUrl;
@@ -101,12 +101,6 @@ export default function Pembayaran() {
     const cetakStruk = () => {
         window.location.href('/struk');
     }
-    // useEffect(() => {
-    //     if (status == "Berhasil") {
-    //         window.location.reload()
-    //     }
-    // })
-
     return (
         <div>
 

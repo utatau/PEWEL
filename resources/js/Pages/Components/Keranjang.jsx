@@ -30,7 +30,7 @@ export default function Keranjang() {
                             <CardHeader className="flex flex-row shadow-lg">
                                 <img src={`assets/gambar/${item.gambar}`} alt="menu" className="w-40 h-40 rounded-3xl" />
                                 <div className="flex flex-col justify-center gap-2 ml-4">
-                                    <CardTitle className="text-2xl font-bold">{item.nama}</CardTitle>
+                                    <CardTitle className="text-2xl font-bold">{item.menu}</CardTitle>
                                     <CardDescription className="font-bold">Harga Rp. {item.harga.toLocaleString('id')}</CardDescription>
                                     <CardDescription className="font-bold">Jumlah beli {item.jumlah}</CardDescription>
                                     <CardDescription className="font-bold">Deskripsi: {item.notes}</CardDescription>

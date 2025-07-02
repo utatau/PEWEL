@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('minumen', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('menu');
             $table->string('gambar');
             $table->integer('harga');
             $table->timestamps();

@@ -16,7 +16,7 @@ export default function Welcome(props) {
                             <div className="col-span-2 m-4 bg-abu rounded hover:cursor-pointer" key={i} onClick={() => router.get(`/detail/${data.id}`)}>
                                 <div className="flex flex-col m-5 gap-2">
                                     <img src={`assets/gambar/${data.gambar}`} alt="" className='border-4 rounded-lg border-white h-[15em]' />
-                                    <h1 className='font-bold'>{data.nama}</h1>
+                                    <h1 className='font-bold'>{data.menu}</h1>
                                     <p className='font-bold'>Rp. {data.harga.toLocaleString('id-ID')}</p>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@ export default function Welcome(props) {
                             <div className="col-span-2 m-4 bg-abu rounded hover:cursor-pointer" key={i} onClick={() => router.get(`/detail/${data.id}`)}>
                                 <div className="flex flex-col m-5 gap-2">
                                     <img src={`assets/gambar/${data.gambar}`} alt="" className='border-4 rounded-lg border-white h-[15em]' />
-                                    <h1 className='font-bold'>{data.nama}</h1>
+                                    <h1 className='font-bold'>{data.menu}</h1>
                                     <p className='font-bold'>Rp. {data.harga.toLocaleString('id-ID')}</p>
                                 </div>
                             </div>

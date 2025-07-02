@@ -7,13 +7,13 @@ const keranjangSlice = createSlice({
   },
   reducers: {
     tambahKeKeranjang: (state, action) => {
-      const { nama, harga, jumlah, notes, gambar } = action.payload
-      const existing = state.items.find(item => item.nama === nama)
+      const { menu, harga, jumlah, notes, gambar } = action.payload
+      const existing = state.items.find(item => item.menu === menu)
 
       if (existing) {
         existing.jumlah += jumlah
       } else {
-        state.items.push({ nama, harga, jumlah, notes, gambar })
+        state.items.push({ menu, harga, jumlah, notes, gambar })
       }
     },
   },

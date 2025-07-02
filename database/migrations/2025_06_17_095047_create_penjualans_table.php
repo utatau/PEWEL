@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigInteger('jumlah_pesanan');
             $table->string('pembayaran');
             $table->string('status');
+            $table->string('meja');
+            $table->string('total');
             $table->timestamps();
         });
     }

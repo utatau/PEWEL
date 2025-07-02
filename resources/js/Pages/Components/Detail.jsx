@@ -14,7 +14,7 @@ export default function Detail() {
     const onAddOrder = () => {
         if (jumlah < 1) return
         dispatch(tambahKeKeranjang({
-            nama: produk.nama,
+            menu: produk.menu,
             harga: produk.harga,
             jumlah: jumlah,
             notes: notes,
