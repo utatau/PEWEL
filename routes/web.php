@@ -1,11 +1,14 @@
 <?php
 
 use Inertia\Inertia;
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Menupancong;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\MinumanController;
+use App\Http\Controllers\PancongController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 
@@ -29,15 +32,30 @@ use App\Http\Controllers\ProfileController;
 //         'phpVersion' => PHP_VERSION,
 //     ]);
 // });
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/pancong', function () {
-    return Inertia::render('Pancong/Pancong');
-})->middleware(['auth', 'verified'])->name('pancong');
-Route::get('/minuman', function () {
-    return Inertia::render('Pancong/Minuman');
-})->middleware(['auth', 'verified'])->name('minuman');
+// Route::get('/dashboard', [Dashboard::class, 'index'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
+// Route::get('/pancong', function () {
+//     return Inertia::render('Pancong/Pancong');
+// })->middleware(['auth', 'verified'])->name('pancong');
+// Route::get('/minuman', function () {
+//     return Inertia::render('Pancong/Minuman');
+// })->middleware(['auth', 'verified'])->name('minuman');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
+    Route::get('/pancong', [PancongController::class, 'index'])->name('pancong');
+    Route::post('/pancong', [PancongController::class, 'store'])->name('pancong.store');
+    Route::put('/pancong/{id}', [PancongController::class, 'update'])->name('pancong.update');
+    Route::post('/pancong/{id}', [PancongController::class, 'update'])->name('pancong.update');
+    Route::delete('/pancong/{id}', [PancongController::class, 'destroy'])->name('pancong.destroy');
+    Route::get('/minuman', [MinumanController::class, 'index'])->name('minuman');
+    Route::post('/minuman/{id}', [MinumanController::class, 'update'])->name('minuman.update');
+    Route::post('/minuman', [MinumanController::class, 'store'])->name('minuman.store');
+    Route::delete('/minuman/{id}', [MinumanController::class, 'destroy'])->name('minuman.destroy');
+});
+
+
 
 Route::get('/', [MenuPancong::class, 'index']);
 Route::get('/detail/{id}', [DetailController::class, 'show']);

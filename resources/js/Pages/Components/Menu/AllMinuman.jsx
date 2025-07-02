@@ -11,14 +11,14 @@ export default function Allminuman(props) {
                 <section className='px-4 pt-6'>
                     <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Minuman</h2>
                     <div className='grid grid-cols-2 gap-4'>
-                        {props.pancong?.map((data, i) => (
+                        {props.minuman?.map((data, i) => (
                             <div
                                 key={i}
                                 onClick={() => router.get(`/detail/${data.id}`)}
                                 className="bg-white shadow-md rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
                             >
                                 <img
-                                    src={`assets/gambar/${data.gambar}`}
+                                    src={`storage/${data.gambar}`}
                                     alt={data.menu}
                                     className="w-full h-40 object-cover"
                                 />

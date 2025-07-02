@@ -37,7 +37,7 @@ export default function Keranjang() {
                     {keranjang.map((item, i) => (
                         <Card key={i} className="w-[47%] bg-white shadow-md rounded-xl">
                             <img
-                                src={`assets/gambar/${item.gambar}`}
+                                src={`storage/${item.gambar}`}
                                 alt="menu"
                                 className="w-full h-28 object-cover rounded-t-xl"
                             />

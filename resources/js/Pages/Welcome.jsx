@@ -1,13 +1,31 @@
 import { Head, router } from '@inertiajs/react';
 import Header from './Components/Header';
 import CartBar from './Components/Cart';
-
+import { useEffect, useState } from 'react';
 export default function Welcome(props) {
+    const [meja, setMeja] = useState(null)
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search)
+        const noMeja = params.get("meja")
+
+        if (noMeja) {
+            localStorage.setItem("no_meja", noMeja)
+            setMeja(noMeja)
+        } else {
+            const stored = localStorage.getItem("no_meja")
+            if (stored) {
+                setMeja(stored)
+            } else {
+                window.location.href = "/order"
+            }
+        }
+    }, [])
     return (
         <>
             <Head title="Pancong Abidzar" />
             <div className='max-w-screen-sm mx-auto bg-gray-50 min-h-screen'>
-                <Header />
+                <Header meja={meja} />
                 <section className='px-4 pt-6'>
                     <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Pancong</h2>
                     <div className='grid grid-cols-2 gap-4'>
@@ -18,7 +36,7 @@ export default function Welcome(props) {
                                 className="bg-white shadow-md rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
                             >
                                 <img
-                                    src={`assets/gambar/${data.gambar}`}
+                                    src={`storage/${data.gambar}`}
                                     alt={data.menu}
                                     className="w-full h-40 object-cover"
                                 />
@@ -49,7 +67,7 @@ export default function Welcome(props) {
                                 className="bg-white shadow-md rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
                             >
                                 <img
-                                    src={`assets/gambar/${data.gambar}`}
+                                    src={`storage/${data.gambar}`}
                                     alt={data.menu}
                                     className="w-full h-40 object-cover"
                                 />

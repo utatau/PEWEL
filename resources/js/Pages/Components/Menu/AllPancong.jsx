@@ -1,5 +1,6 @@
 import { Head, router } from '@inertiajs/react';
 import Header from '../Header';
+import { Button } from '@/Components/ui/button';
 export default function AllPancong(props) {
     return (
         <>
@@ -17,7 +18,7 @@ export default function AllPancong(props) {
                                 className="bg-white shadow-md rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
                             >
                                 <img
-                                    src={`assets/gambar/${data.gambar}`}
+                                    src={`storage/${data.gambar}`}
                                     alt={data.menu}
                                     className="w-full h-40 object-cover"
                                 />

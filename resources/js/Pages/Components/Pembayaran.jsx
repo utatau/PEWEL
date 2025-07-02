@@ -33,7 +33,7 @@ export default function Pembayaran() {
     const [nama, setNama] = useState("")
     const [notif, isNotif] = useState(false);
     const [no, setNo] = useState("")
-    const [meja, setMeja] = useState(4)
+    const [meja, setMeja] = useState(null)
     const [jumlah, setJumlah] = useState(0)
     const [pesanan, setPesanan] = useState("")
     const [pembayaran, setPembayaran] = useState("")
@@ -44,7 +44,10 @@ export default function Pembayaran() {
     const subtotal = keranjang.reduce((total, item) => total + item.harga * item.jumlah, 0)
     const fee = 3000
     const total = subtotal + fee
-
+    useEffect(() => {
+        const storedMeja = localStorage.getItem("no_meja")
+        setMeja(storedMeja)
+    }, [])
     useEffect(() => {
         if (keranjang.length > 0) {
             const totalJumlah = keranjang.reduce((acc, item) => acc + item.jumlah, 0)
@@ -118,7 +121,7 @@ export default function Pembayaran() {
                         <h1>Nomor telepon</h1>
                         <Input type="number" onChange={(e) => setNo(e.target.value)} />
                         <h1>Nomor meja</h1>
-                        <Input type="number" value="4" readOnly />
+                        <Input type="number" value={meja} readOnly />
                         <h1 className="mt-5 font-bold">Metode Pembayaran</h1>
                         <div className="flex flex-row justify-center m-4 gap-4">
                             <button type="button" onClick={() => setPembayaran('Online')} className="text-white bg-[#FA52A8] hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2">Pembayaran online</button>
