@@ -1,5 +1,7 @@
 "use client"
 import { Button } from "@/Components/ui/button"
+import { AlertCircleIcon, CheckCircle2Icon, PopcornIcon } from "lucide-react"
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -29,6 +31,7 @@ import { toast } from "sonner"
 
 export default function Pembayaran() {
     const [nama, setNama] = useState("")
+    const [notif, isNotif] = useState(false);
     const [statq, setStatq] = useState('');
     const [no, setNo] = useState("")
     const [meja, setMeja] = useState(0)
@@ -79,13 +82,15 @@ export default function Pembayaran() {
     async function cekPembayaran() {
         try {
             const response = await axios.get(`http://localhost:8000/cek_status/${order}`);
-            console.log('Status dari Midtrans:', response.data);
-            setStatus(response.data.transaction_status);
+            const statusBaru = response.data.transaction_status;
+            setStatus(statusBaru)
+            isNotif(true)
             console.log(status)
         } catch (error) {
             console.error('Gagal cek status pembayaran:', error);
         }
     }
+
 
     return (
         <div>
@@ -93,14 +98,19 @@ export default function Pembayaran() {
             <Drawer>
                 <DrawerTrigger className="bg-[#FA52A8] p-3 rounded-xl font-bold text-white">Lanjutkan Pembayaran</DrawerTrigger>
                 <DrawerContent className="max-w-screen-sm mx-auto overflow-y-hidden min-h-screen">
-
                     <DrawerHeader className="gap-4">
                         <DrawerTitle className="text-2xl text-center">Pembayaran</DrawerTitle>
                         <div className="flex flex-row justify-around bg-pink rounded-2xl shadow-lg py-1 mt-6">
                             <p className="font-bold">Order Type</p>
                             <p className="font-bold">Dine in</p>
                         </div>
-                        <DrawerDescription className="font-bold">Informasi Pelanggan</DrawerDescription>
+                        {notif && (
+                            <div class="p-4 mb-4 text-2xl text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 " role="alert">
+                                <span class="font-medium text-2xl">berhasil </span>{status}
+                            </div>
+                        )}
+
+                        <DrawerDescription className="font-bold text-2xl">Informasi Pelanggan</DrawerDescription>
                     </DrawerHeader>
                     <div className="gap-6 mx-auto w-11/12">
                         <h1>Full Name</h1>
@@ -111,8 +121,8 @@ export default function Pembayaran() {
                         <Input type="number" value="4" readOnly />
                         <h1 className="mt-5 font-bold">Metode Pembayaran</h1>
                         <div className="flex flex-row justify-center m-4 gap-4">
-                            <Button variant="outline" className="w-64 shadow" onClick={() => setPembayaran('Online')}>Pembayaran online</Button>
-                            <Button variant="outline" className="w-64 shadow" onClick={() => setPembayaran('Kasir')}>Pembayaran kasir</Button>
+                            <button type="button" onClick={() => setPembayaran('Online')} class="text-white bg-[#FA52A8] hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-[#FA52A8] dark:focus:ring-purple-900">Pembayaran online</button>
+                            <button type="button" onClick={() => setPembayaran('Kasir')} class="text-white bg-[#FA52A8] hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-[#FA52A8] dark:focus:ring-purple-900">Pembayaran kasir</button>
                         </div>
                     </div>
                     <DrawerFooter>

@@ -60,6 +60,7 @@ class DetailController extends Controller
     curl_close($ch);
     header('Content-Type: application/json');
     echo $response;
+    // return redirect()->back()->with('message', 'sukses');
 }
 
     public function keranjang()

@@ -65,7 +65,7 @@ export default function Keranjang() {
                 }
 
             </div>
-            {total && (
+            {!!total && (
                 <div className="fixed bottom-4 max-w-screen-sm container w-11/12 ml-4 flex flex-row justify-between border rounded-md bg-white">
                     <div className="m-2">
                         <h1 className="font-bold">Total Payments</h1>
