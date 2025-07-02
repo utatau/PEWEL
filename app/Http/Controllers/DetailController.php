@@ -67,6 +67,9 @@ class DetailController extends Controller
     {
         return inertia::render('Components/Keranjang');
     }
+    public function struk(){
+        return inertia::render('Components/Struk');
+    }
 
     /**
      * Show the form for editing the specified resource.

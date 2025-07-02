@@ -28,7 +28,7 @@ export default function Keranjang() {
                     {keranjang.map((item, i) => (
                         <Card key={i} className="mb-5">
                             <CardHeader className="flex flex-row shadow-lg">
-                                <img src="assets/gambar/pancong-1.jpg" alt="menu" className="w-40 h-40 rounded-3xl" />
+                                <img src={`assets/gambar/${item.gambar}`} alt="menu" className="w-40 h-40 rounded-3xl" />
                                 <div className="flex flex-col justify-center gap-2 ml-4">
                                     <CardTitle className="text-2xl font-bold">{item.nama}</CardTitle>
                                     <CardDescription className="font-bold">Harga Rp. {item.harga.toLocaleString('id')}</CardDescription>

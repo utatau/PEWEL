@@ -18,7 +18,7 @@ export default function Detail() {
             harga: produk.harga,
             jumlah: jumlah,
             notes: notes,
-            gambar: "pancong.jpg",
+            gambar: produk.gambar,
         }))
 
         router.get('/')

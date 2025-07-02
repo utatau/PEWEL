@@ -28,10 +28,12 @@ import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { toast } from "sonner"
+import { router } from "@inertiajs/react"
 
 export default function Pembayaran() {
     const [nama, setNama] = useState("")
     const [notif, isNotif] = useState(false);
+    // const [qris, setQris] = useState("");
     const [statq, setStatq] = useState('');
     const [no, setNo] = useState("")
     const [meja, setMeja] = useState(0)
@@ -83,14 +85,27 @@ export default function Pembayaran() {
         try {
             const response = await axios.get(`http://localhost:8000/cek_status/${order}`);
             const statusBaru = response.data.transaction_status;
-            setStatus(statusBaru)
+            if (statusBaru == 'settlement') {
+                setStatus('Berhasil')
+            } else if (statusBaru == "PENDING") {
+                setStatus('Verify pembayaran')
+            } else {
+                setStatus('lel')
+            }
             isNotif(true)
             console.log(status)
         } catch (error) {
             console.error('Gagal cek status pembayaran:', error);
         }
     }
-
+    const cetakStruk = () => {
+        window.location.href('/struk');
+    }
+    // useEffect(() => {
+    //     if (status == "Berhasil") {
+    //         window.location.reload()
+    //     }
+    // })
 
     return (
         <div>
@@ -106,7 +121,7 @@ export default function Pembayaran() {
                         </div>
                         {notif && (
                             <div class="p-4 mb-4 text-2xl text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 " role="alert">
-                                <span class="font-medium text-2xl">berhasil </span>{status}
+                                <span class="font-medium text-2xl">{status} melakukan pembayaran </span>
                             </div>
                         )}
 
@@ -137,15 +152,35 @@ export default function Pembayaran() {
                                 {/* <Button size="lg" className="bg-[#FA52A8] w-full" onClick={() => qrCode()}>Bayar sekarang</Button> */}
                                 <AlertDialog>
                                     <AlertDialogTrigger className="bg-[#FA52A8] p-2 rounded-xl font-bold text-white" onClick={() => qrCode()}>Lanjutkan Pembayaran</AlertDialogTrigger>
-                                    <AlertDialogContent>
+                                    {status == "Berhasil" ? (
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>{status}</AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                    <div className="container flex justify-center">
+                                                        <img src="assets/icon/sukses.png" alt="QR Code" />
+                                                    </div>
+                                                </AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel onClick={() => router.get('/struk')}>Cetak Struk</AlertDialogCancel>
+                                                {/* <AlertDialogAction className="bg-[#FA52A8]" variant="outline" onClick={cekPembayaran}
+                                            >Cek Status Pembayaran</AlertDialogAction> */}
+                                                <Button className="bg-[#FA52A8]" onClick={() => window.location.href('/')}>
+                                                    Kembali
+                                                </Button>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    ) : <AlertDialogContent>
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>Silahkan lakukan scan brow </AlertDialogTitle>
+
                                             <AlertDialogDescription>
                                                 <div className="container flex justify-center">
                                                     <img id="qr-img" style={{ display: "flex", maxWidth: "300px" }} alt="QR Code" />
                                                 </div>
-                                                nomor transaksi {order}
                                             </AlertDialogDescription>
+                                            nomor transaksi {order}
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
                                             <AlertDialogCancel>Selesai</AlertDialogCancel>
@@ -155,7 +190,7 @@ export default function Pembayaran() {
                                                 Cek Status Pembayaran
                                             </Button>
                                         </AlertDialogFooter>
-                                    </AlertDialogContent>
+                                    </AlertDialogContent>}
                                 </AlertDialog>
                             </div>
 
