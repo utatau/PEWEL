@@ -156,13 +156,21 @@ export default function Pembayaran() {
                                                 <AlertDialogDescription>
                                                     <div className="container flex justify-center items-center h-60">
                                                         {qrUrl ? (
-                                                            <img src={qrUrl} style={{ maxWidth: "300px" }} alt="QR Code" />
+                                                            <>
+                                                                <img src={qrUrl} style={{ maxWidth: "250px" }} alt="QR Code" />
+                                                            </>
                                                         ) : (
                                                             <div className="text-center text-lg font-bold animate-pulse text-[#FA52A8]">Loading QR Code...</div>
                                                         )}
                                                     </div>
                                                 </AlertDialogDescription>
-                                                <p className="text-center mt-2 text-sm text-gray-500">Nomor transaksi: {order}</p>
+                                                {qrUrl ? (
+                                                    <>
+                                                        <Menit />
+                                                        <h1 className="text-center mt-2 text-md text-black">Total Rp. {total.toLocaleString('id')}</h1>
+                                                        <p className="text-center mt-2 text-sm text-gray-500">Nomor transaksi: {order}</p>
+                                                    </>
+                                                ) : ""}
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel>Selesai</AlertDialogCancel>

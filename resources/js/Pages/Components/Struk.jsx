@@ -20,8 +20,7 @@ export default function Struk() {
         <div className="max-w-screen-sm mx-auto overflow-y-hidden min-h-screen">
             <div className="max-w-sm mx-auto p-4 border border-black text-[10px] font-mono">
                 <div className="text-center mb-2">
-                    <h1 className="text-[12px] font-bold">PANGCONG LUMER</h1>
-                    <p>Jl. Contoh Alamat No.123<br />Telp: 0812-3456-7890</p>
+                    <h1 className="text-[12px] font-bold">PANCONG ABIDZAR LUMER</h1>
                 </div>
 
                 <div className="border-t border-b border-black py-1 my-2 text-[9px]">
@@ -74,7 +73,7 @@ export default function Struk() {
                 </div>
 
                 <div className="mt-4 text-center text-[12px] font-bold tracking-widest">
-                    PANGCONG LUMER
+                    PANCONG ABIDZAR LUMER
                 </div>
             </div>
         </div>
