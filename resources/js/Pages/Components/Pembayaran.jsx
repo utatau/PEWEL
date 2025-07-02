@@ -31,6 +31,7 @@ import { toast } from "sonner"
 import { router } from "@inertiajs/react"
 
 export default function Pembayaran() {
+    const [dataStruk, setDataStruk] = useState(null);
     const [nama, setNama] = useState("")
     const [notif, isNotif] = useState(false);
     const [statq, setStatq] = useState('');
@@ -65,12 +66,17 @@ export default function Pembayaran() {
 
     async function qrCode() {
         const data = {
-            jumlah_pesanan: jumlah, pesanan: pesanan, pembayaran: pembayaran, status: status, total: total, nama: nama, no: no, meja: meja, menu: menu
+            jumlah_pesanan: jumlah, pesanan: pesanan, pembayaran: pembayaran, status: status, total: total, nama: nama, no: no, meja: meja, menu: pesanan
         };
         try {
             const response = await axios.post('api/proses-pembayaran', data);
             const resp = response;
-            console.log(resp.config.data)
+            // console.log(resp.config.data)
+            const parsed = JSON.parse(resp.config.data);
+
+            setDataStruk(parsed);
+            localStorage.setItem('dataStruk', resp.config.data);
+
             const qrUrl = response.data.qr;
             setStatq(response.data.status)
             setOrder(response.data.order_id);
@@ -97,9 +103,6 @@ export default function Pembayaran() {
         } catch (error) {
             console.error('Gagal cek status pembayaran:', error);
         }
-    }
-    const cetakStruk = () => {
-        window.location.href('/struk');
     }
     return (
         <div>
@@ -157,7 +160,9 @@ export default function Pembayaran() {
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
-                                                <AlertDialogCancel onClick={() => router.get('/struk')}>Cetak Struk</AlertDialogCancel>
+                                                <AlertDialogCancel onClick={() => router.visit('/struk', {
+                                                    data: dataStruk
+                                                })}>Cetak Struk</AlertDialogCancel>
                                                 {/* <AlertDialogAction className="bg-[#FA52A8]" variant="outline" onClick={cekPembayaran}
                                             >Cek Status Pembayaran</AlertDialogAction> */}
                                                 <Button className="bg-[#FA52A8]" onClick={() => window.location.href('/')}>
