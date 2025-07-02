@@ -1,52 +1,80 @@
 import { Head, router } from '@inertiajs/react';
 import Header from './Components/Header';
 import CartBar from './Components/Cart';
+
 export default function Welcome(props) {
     return (
         <>
             <Head title="Pancong Abidzar" />
-            <div className='max-w-screen-sm mx-auto overflow-y-hidden min-h-screen'>
+            <div className='max-w-screen-sm mx-auto bg-gray-50 min-h-screen'>
                 <Header />
-                <div className='container mt-10 mx-auto'>
-                    <h1 className='border-t-2 text-center mt-4 p-2 border-black font-bold'>Pancong</h1>
-                </div>
-                <div className='grid grid-cols-4 container' >
-                    {props.pancong ? props.pancong.map((data, i) => {
-                        return (
-                            <div className="col-span-2 m-4 bg-abu rounded hover:cursor-pointer" key={i} onClick={() => router.get(`/detail/${data.id}`)}>
-                                <div className="flex flex-col m-5 gap-2">
-                                    <img src={`assets/gambar/${data.gambar}`} alt="" className='border-4 rounded-lg border-white h-[15em]' />
-                                    <h1 className='font-bold'>{data.menu}</h1>
-                                    <p className='font-bold'>Rp. {data.harga.toLocaleString('id-ID')}</p>
+
+                {/* Section: Pancong */}
+                <section className='px-4 pt-6'>
+                    <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Pancong</h2>
+                    <div className='grid grid-cols-2 gap-4'>
+                        {props.pancong?.map((data, i) => (
+                            <div
+                                key={i}
+                                onClick={() => router.get(`/detail/${data.id}`)}
+                                className="bg-white shadow-md rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
+                            >
+                                <img
+                                    src={`assets/gambar/${data.gambar}`}
+                                    alt={data.menu}
+                                    className="w-full h-40 object-cover"
+                                />
+                                <div className="p-3">
+                                    <h3 className="font-semibold text-lg">{data.menu}</h3>
+                                    <p className="text-[#FA52A8] font-bold">Rp {data.harga.toLocaleString('id-ID')}</p>
                                 </div>
                             </div>
-                        )
-                    }) : ''}
-                    <div className="col-span-4 m-4 ">
-                        <a className='flex justify-end text-kuning hover:cursor-pointer' onClick={() => router.get('/Components/Menu/allpancong')}>See All</a>
+                        ))}
                     </div>
-                </div>
-                <div className='container mt-10 mx-auto'>
-                    <h1 className='border-t-2 text-center mt-4 p-2 border-black font-bold'>Minuman</h1>
-                </div>
-                <div className='grid grid-cols-4 container mb-10'>
-                    {props.pancong ? props.pancong.map((data, i) => {
-                        return (
-                            <div className="col-span-2 m-4 bg-abu rounded hover:cursor-pointer" key={i} onClick={() => router.get(`/detail/${data.id}`)}>
-                                <div className="flex flex-col m-5 gap-2">
-                                    <img src={`assets/gambar/${data.gambar}`} alt="" className='border-4 rounded-lg border-white h-[15em]' />
-                                    <h1 className='font-bold'>{data.menu}</h1>
-                                    <p className='font-bold'>Rp. {data.harga.toLocaleString('id-ID')}</p>
+                    <div className="flex justify-end mt-4">
+                        <a
+                            onClick={() => router.get('/Components/Menu/allpancong')}
+                            className="text-[#FA52A8] text-sm font-semibold hover:underline cursor-pointer"
+                        >
+                            Lihat Semua Pancong →
+                        </a>
+                    </div>
+                </section>
+
+                {/* Section: Minuman */}
+                <section className='px-4 pt-8 pb-16'>
+                    <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Minuman</h2>
+                    <div className='grid grid-cols-2 gap-4'>
+                        {props.pancong?.map((data, i) => (
+                            <div
+                                key={i}
+                                onClick={() => router.get(`/detail/${data.id}`)}
+                                className="bg-white shadow-md rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
+                            >
+                                <img
+                                    src={`assets/gambar/${data.gambar}`}
+                                    alt={data.menu}
+                                    className="w-full h-40 object-cover"
+                                />
+                                <div className="p-3">
+                                    <h3 className="font-semibold text-lg">{data.menu}</h3>
+                                    <p className="text-[#FA52A8] font-bold">Rp {data.harga.toLocaleString('id-ID')}</p>
                                 </div>
                             </div>
-                        )
-                    }) : ''}
-                    <div className="col-span-4 m-4 ">
-                        <a className='flex justify-end text-kuning' href='#'>See All</a>
+                        ))}
                     </div>
-                </div>
+                    <div className="flex justify-end mt-4">
+                        <a
+                            onClick={() => router.get('/Components/Menu/allpancong')}
+                            className="text-[#FA52A8] text-sm font-semibold hover:underline cursor-pointer"
+                        >
+                            Lihat Semua Minuman →
+                        </a>
+                    </div>
+                </section>
+
                 <CartBar />
-            </div >
+            </div>
         </>
     );
 }
