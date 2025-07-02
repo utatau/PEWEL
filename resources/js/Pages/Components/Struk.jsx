@@ -3,22 +3,21 @@ import { useSelector } from "react-redux"
 
 export default function Struk() {
     const [data, setData] = useState(null)
+
     useEffect(() => {
         const saved = localStorage.getItem('dataStruk')
-        if (saved) {
-            setData(JSON.parse(saved))
-        }
+        if (saved) setData(JSON.parse(saved))
     }, [])
 
     const keranjang = useSelector(state => state.keranjang?.items ?? [])
     const subtotal = keranjang.reduce((total, item) => total + item.harga * item.jumlah, 0)
     const fee = 3000
     const total = subtotal + fee
-    console.log(keranjang)
+
     if (!data) return <p className="text-center mt-10">Memuat struk...</p>
 
     return (
-        <div className='max-w-screen-sm mx-auto overflow-y-hidden min-h-screen'>
+        <div className="max-w-screen-sm mx-auto overflow-y-hidden min-h-screen">
             <div className="max-w-sm mx-auto p-4 border border-black text-[10px] font-mono">
                 <div className="text-center mb-2">
                     <h1 className="text-[12px] font-bold">PANGCONG LUMER</h1>
@@ -27,15 +26,16 @@ export default function Struk() {
 
                 <div className="border-t border-b border-black py-1 my-2 text-[9px]">
                     <div className="flex justify-between">
-                        <span>Tipe pembayaran</span>
+                        <span>Tipe Pembayaran</span>
                         <span>{data.pembayaran}</span>
                     </div>
                 </div>
 
                 <div className="flex justify-between text-[9px]">
-                    <span>Nama kustomer</span>
+                    <span>Nama Kustomer</span>
                     <span>{data.nama}</span>
                 </div>
+
                 <div className="flex justify-between text-[9px]">
                     <span>No Meja</span>
                     <span>{data.meja}</span>
@@ -48,8 +48,6 @@ export default function Struk() {
                             <span>Rp. {item.harga.toLocaleString('id')}</span>
                         </div>
                     ))}
-                    {/* <span>Amount</span>
-                    <span>Rp. {subtotal.toLocaleString('id')}</span> */}
                     <div className="flex justify-between text-[9px]">
                         <span>Tax / Fee</span>
                         <span>Rp. {fee.toLocaleString('id')}</span>
@@ -79,6 +77,6 @@ export default function Struk() {
                     PANGCONG LUMER
                 </div>
             </div>
-        </div >
+        </div>
     )
 }

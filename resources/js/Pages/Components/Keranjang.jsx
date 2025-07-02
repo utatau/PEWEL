@@ -30,8 +30,7 @@ export default function Keranjang() {
                 <h1 className="text-center font-bold text-2xl mb-4">Keranjang</h1>
 
                 <div className="flex flex-row justify-around bg-pink rounded-xl shadow-md py-2 mb-6 text-white font-semibold">
-                    <p>Order Type</p>
-                    <p>Dine In</p>
+                    <p>Tipe Order</p>
                 </div>
 
                 <div className="flex flex-wrap gap-4 justify-start">

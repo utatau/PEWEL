@@ -17,11 +17,14 @@ class Menupancong extends Controller
     {
         $pancong = Pancong::all();
         $minuman = Minuman::all();
-
+        $minum = Minuman::paginate(4);
+        $cong = Pancong::paginate(4);
         return inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'pancong' => $pancong,
+            'cong' => $cong,
+            'minum' => $minum,
             'minuman' => $minuman
         ]);
     }
@@ -29,13 +32,16 @@ class Menupancong extends Controller
     public function pancong(){
         $pancong = Pancong::all();
         return inertia::render('Components/Menu/AllPancong', [
-            'pancong' => $pancong
+            'pancong' => $pancong,
+            'cong' => $cong
         ]);
     }
     public function minuman(){
         $minuman = Minuman::all();
+        $minum = Minuman::paginate(4);
         return inertia::render('Components/Menu/AllMinuman', [
-            'minuman' => $minuman
+            'minuman' => $minuman,
+            'minum' => $minum
         ]);
     }
 

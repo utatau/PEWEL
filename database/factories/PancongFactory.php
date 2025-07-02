@@ -17,7 +17,7 @@ class PancongFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => fake()->seed(),
+            'menu' => fake()->seed(),
             'gambar' => Str::random(10),
             'harga' => fake()->seed(),
         ];

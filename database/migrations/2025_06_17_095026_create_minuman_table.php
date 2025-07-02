@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('minumen', function (Blueprint $table) {
+        Schema::create('minumans', function (Blueprint $table) {
             $table->id();
             $table->string('menu');
             $table->string('gambar');

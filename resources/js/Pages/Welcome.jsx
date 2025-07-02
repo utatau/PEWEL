@@ -3,17 +3,16 @@ import Header from './Components/Header';
 import CartBar from './Components/Cart';
 
 export default function Welcome(props) {
+    console.log(props)
     return (
         <>
             <Head title="Pancong Abidzar" />
             <div className='max-w-screen-sm mx-auto bg-gray-50 min-h-screen'>
                 <Header />
-
-                {/* Section: Pancong */}
                 <section className='px-4 pt-6'>
                     <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Pancong</h2>
                     <div className='grid grid-cols-2 gap-4'>
-                        {props.pancong?.map((data, i) => (
+                        {props.cong.data?.map((data, i) => (
                             <div
                                 key={i}
                                 onClick={() => router.get(`/detail/${data.id}`)}
@@ -41,7 +40,6 @@ export default function Welcome(props) {
                     </div>
                 </section>
 
-                {/* Section: Minuman */}
                 <section className='px-4 pt-8 pb-16'>
                     <h2 className='text-xl font-bold text-center border-b-2 border-black pb-2 mb-4'>Minuman</h2>
                     <div className='grid grid-cols-2 gap-4'>

@@ -1,4 +1,5 @@
 "use client"
+
 import { Button } from "@/Components/ui/button"
 import {
     AlertDialog,
@@ -38,6 +39,7 @@ export default function Pembayaran() {
     const [pembayaran, setPembayaran] = useState("")
     const [status, setStatus] = useState("CREATED")
     const [order, setOrder] = useState('');
+    const [qrUrl, setQrUrl] = useState(null);
     const keranjang = useSelector(state => state.keranjang?.items ?? [])
     const subtotal = keranjang.reduce((total, item) => total + item.harga * item.jumlah, 0)
     const fee = 3000
@@ -62,11 +64,9 @@ export default function Pembayaran() {
             const parsed = JSON.parse(response.config.data);
             setDataStruk(parsed);
             localStorage.setItem('dataStruk', response.config.data);
-            const qrUrl = response.data.qr;
+            setQrUrl(response.data.qr);
             setStatq(response.data.status)
             setOrder(response.data.order_id);
-            document.getElementById('qr-img').src = qrUrl;
-            document.getElementById('qr-img').style.display = "block";
         } catch (err) {
             console.log(err)
         }
@@ -107,8 +107,8 @@ export default function Pembayaran() {
                             <p className="font-bold">Dine in</p>
                         </div>
                         {notif && (
-                            <div className="p-4 mb-4 text-2xl text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-                                <span className="font-medium text-2xl">{status} melakukan pembayaran </span>
+                            <div className="p-4 mb-4 text-2xl text-blue-800 rounded-lg bg-blue-50" role="alert">
+                                <span className="font-medium text-2xl">{status} melakukan pembayaran</span>
                             </div>
                         )}
                         <DrawerDescription className="font-bold text-2xl">Informasi Pelanggan</DrawerDescription>
@@ -130,7 +130,7 @@ export default function Pembayaran() {
                         <div className="container w-11/12 ml-4 flex flex-row justify-between border rounded-md">
                             <div className="m-2">
                                 <h1 className="font-bold">Total Pembayaran</h1>
-                                <h1 className="font-bold">Rp. {total ? total.toLocaleString('id') : 'tidak ada pesanan brow'}</h1>
+                                <h1 className="font-bold">Rp. {total.toLocaleString('id')}</h1>
                             </div>
                             <div className="self-center m-2">
                                 <AlertDialog>
@@ -146,22 +146,24 @@ export default function Pembayaran() {
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
-                                                <AlertDialogCancel onClick={() => router.visit('/struk', {
-                                                    data: dataStruk
-                                                })}>Cetak Struk</AlertDialogCancel>
-                                                <Button className="bg-[#FA52A8]" onClick={() => window.location.href = ('/')}>Kembali</Button>
+                                                <AlertDialogCancel onClick={() => router.visit('/struk', { data: dataStruk })}>Cetak Struk</AlertDialogCancel>
+                                                <Button className="bg-[#FA52A8]" onClick={() => window.location.href = '/'}>Kembali</Button>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     ) : (
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
-                                                <AlertDialogTitle>Silahkan lakukan scan brow</AlertDialogTitle>
+                                                <AlertDialogTitle>Silahkan lakukan scan</AlertDialogTitle>
                                                 <AlertDialogDescription>
-                                                    <div className="container flex justify-center">
-                                                        <img id="qr-img" style={{ display: "flex", maxWidth: "300px" }} alt="QR Code" />
+                                                    <div className="container flex justify-center items-center h-60">
+                                                        {qrUrl ? (
+                                                            <img src={qrUrl} style={{ maxWidth: "300px" }} alt="QR Code" />
+                                                        ) : (
+                                                            <div className="text-center text-lg font-bold animate-pulse text-[#FA52A8]">Loading QR Code...</div>
+                                                        )}
                                                     </div>
                                                 </AlertDialogDescription>
-                                                nomor transaksi {order}
+                                                <p className="text-center mt-2 text-sm text-gray-500">Nomor transaksi: {order}</p>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel>Selesai</AlertDialogCancel>

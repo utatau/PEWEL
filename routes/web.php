@@ -43,6 +43,7 @@ Route::get('/', [MenuPancong::class, 'index']);
 Route::get('/detail/{id}', [DetailController::class, 'show']);
 Route::get('/detail', [DetailController::class, 'index']);
 Route::get('/allpancong', [MenuPancong::class, 'pancong']);
+Route::get('/allminuman', [MenuPancong::class, 'minuman']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::get('/keranjang', [DetailController::class, 'keranjang']);
 Route::get('/pembayaran', [PaymentController::class, 'index']);
