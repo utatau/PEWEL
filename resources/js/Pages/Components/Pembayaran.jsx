@@ -77,9 +77,14 @@ export default function Pembayaran() {
     }
 
     async function cekPembayaran() {
-        const respon = await axios.get(statq)
-
-        console.log(respon.data)
+        try {
+            const response = await axios.get(`http://localhost:8000/cek_status/${order}`);
+            console.log('Status dari Midtrans:', response.data);
+            setStatus(response.data.transaction_status);
+            console.log(status)
+        } catch (error) {
+            console.error('Gagal cek status pembayaran:', error);
+        }
     }
 
     return (
@@ -133,9 +138,12 @@ export default function Pembayaran() {
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
-                                            <AlertDialogCancel>Check ulang</AlertDialogCancel>
-                                            <AlertDialogAction className="bg-[#FA52A8]" variant="outline" onClick={() => cekPembayaran()}
-                                            >Cek Status Pembayaran</AlertDialogAction>
+                                            <AlertDialogCancel>Selesai</AlertDialogCancel>
+                                            {/* <AlertDialogAction className="bg-[#FA52A8]" variant="outline" onClick={cekPembayaran}
+                                            >Cek Status Pembayaran</AlertDialogAction> */}
+                                            <Button className="bg-[#FA52A8]" onClick={cekPembayaran}>
+                                                Cek Status Pembayaran
+                                            </Button>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
                                 </AlertDialog>

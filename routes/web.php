@@ -47,7 +47,7 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::get('/keranjang', [DetailController::class, 'keranjang']);
 Route::get('/pembayaran', [PaymentController::class, 'index']);
 Route::get('/qris', [PaymentController::class, 'qris']);
-
+Route::get('/cek_status/{id}', [DetailController::class, 'cek_status']);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
